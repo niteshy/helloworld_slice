@@ -1,0 +1,7 @@
+{
+  "s3Bucket": "test-installation/helloworld",
+  "redshiftSchema": "helloworld",
+  "redshifTables": [
+    "table1", "table2"
+  ]
+}

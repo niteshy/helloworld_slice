@@ -1,0 +1,16 @@
+{
+  "name": "datacoral-slice-datasource-helloworld-lambda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.18.1"
+  },
+  "keywords": [
+    "runtime"
+  ],
+  "bundledDependencies": [
+    "moment"
+  ]
+}

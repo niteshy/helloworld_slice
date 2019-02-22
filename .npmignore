@@ -1,0 +1,14 @@
+**/*.log
+**/*.tgz
+**/*.zip
+**/*.iml
+.gitignore
+.npmignore
+.nyc_output/**
+build/**
+coverage/**
+dest/**
+docs/**
+mochawesome-report/**
+node_modules/**
+testBuild/**

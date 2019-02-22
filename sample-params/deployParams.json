@@ -1,0 +1,28 @@
+{
+	"disableBootstrap": true,
+	"datasource": {
+		"type": "helloworld",
+		"id": "helloworld",
+		"inputParams": {
+			"password": {
+				"encrypt": true,
+				"key": "mysecurepassword"
+			},
+			"loadunits": {
+				"snapshots": {}
+			},
+			"notificationEmail": "ops@datacoral.co",
+			"schedule": "0 0 * * *"
+		},
+		"loaderConfig": {
+			"CopyOptions": "DATEFORMAT \"auto\" TIMEFORMAT \"auto\" TRUNCATECOLUMNS",
+			"TruncateTargetTable": true,
+			"DataFormat": "JSON"
+		},
+		"redshiftDDLs": [
+			"create schema if not exists datasource_id",
+			"grant usage on schema datasource_id to public",
+			"create table if not exists datasource_id.sample1 (\"id\" FLOAT, \"load_time\" TIMESTAMP, \"created_at\" TIMESTAMP, \"updated_at\" TIMESTAMP, \"deleted\" BOOLEAN, \"url\" VARCHAR (4096), \"name\" VARCHAR (4096))"
+		]
+	}
+}

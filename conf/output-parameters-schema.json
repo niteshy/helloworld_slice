@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "outputParametersDescription": "\nDatasource output resources:\n\n  S3 bucket: installation-name.datacoral/slice-name\n  S3 bucket keys for each load unit:\n    installation-name.datacoral/slice-name/loadunit1\n    installation-name.datacoral/slice-name/loadunit2\n    installation-name.datacoral/slice-name/loadunit1/y=year/m=month/d=day/h=hour/data.json\n\n  Redshift resources:\n    schema: slice-name,\n    tables: loadunit1, loadunit2",
+  "properties": {
+    "s3Bucket": {
+      "type": "string",
+      "label": "S3 bucket",
+      "description": "S3 bucket for datasource data files"
+    },
+    "redshiftSchema": {
+      "type": "string",
+      "label": "S3 bucket",
+      "description": "S3 bucket for datasource data files"
+    },
+    "redshifTables": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "label": "tables list",
+      "description": "datasource Redshift tables list"
+    }
+  },
+  "required": [
+    "s3Bucket", 
+    "redshiftSchema",
+    "redshifTables"
+  ],
+  "additionalProperties": false
+}

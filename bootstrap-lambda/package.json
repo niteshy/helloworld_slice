@@ -1,0 +1,14 @@
+{
+  "name": "datacoral-slice-datasource-helloworld-bootstrap",
+  "version": "1.0.0",
+  "description": "Sample datasource slice bootstrap",
+  "repository": {
+    "type": "git"
+  },
+  "license": "ISC",
+  "dependencies": {},
+  "keywords": [
+    "runtime"
+  ],
+  "bundledDependencies": []
+}

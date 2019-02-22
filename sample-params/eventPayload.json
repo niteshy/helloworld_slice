@@ -1,0 +1,7 @@
+{
+  "installationName":"secure",
+  "datasourceId":"helloworld",
+  "loadunit":"snapshot1",
+  "startTimestamp": "2016-08-25 00:00 +00:00",
+  "endTimestamp": "2016-08-26 00:00 +00:00"
+}

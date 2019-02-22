@@ -1,0 +1,175 @@
+{
+  "definitions": {
+    "inputParams": {
+      "type": "object",
+      "properties": {
+        "backfillSchedule": {
+          "type": "string"
+        },
+        "schedule": {
+          "type": "string",
+          "default": "0 0 * * *",
+          "description": "datasource schedule",
+          "minLength": 9,
+          "requiresUserInput": true,
+          "promptUser": true
+        },
+        "password": {
+          "type": "object",
+          "properties": {
+            "encrypt": {
+              "type": "boolean",
+              "default": true
+            },
+            "key": {
+              "type": "string",
+              "requiresUserInput": true,
+              "promptUser": true,
+              "label": "password",
+              "description": "password (will be encrypted)"
+            }
+          },
+          "required": ["encrypt", "key"],
+          "additionalProperties": false
+        },
+        "loadunits": {
+          "type": "object",
+          "patternProperties": {
+            "^.+$": {
+              "$ref": "#/definitions/loadunit"
+            }
+          }
+        },
+        "notificationEmail": {
+          "type": "string",
+          "pattern": "^.+\\@.+\\..+$",
+          "minLength": 3,
+          "requiresUserInput": true,
+          "label": "notification email",
+          "description": "email address to send notification"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "loadunit": {
+      "type": "object",
+      "properties": {
+        "executionMode": {
+          "enum": ["incremental", "snapshot", "full"],
+          "description": "execution mode"
+        },
+        "TruncateTargetTable": {
+          "type": "boolean",
+          "default": false
+        },
+        "paginate": {
+          "type": "boolean",
+          "description": "paginate load"
+        },
+        "pageSize": {
+          "type": "number",
+          "description": "page size"
+        },
+        "pageSortCol": {
+          "type": "string",
+          "description": "column name to sort the data so that there are no duplicates"
+        },
+        "timestampCol": {
+          "type": "string",
+          "description": "necessary if executionMode is set to \"incremental\""
+        },
+        "ignoreSchedule": {
+          "type": "boolean"
+        },
+        "loadUnitSchedule": {
+          "type": "string",
+          "default": "0 0 * * *",
+          "minLength": 9,
+          "deployParamName": "schedule",
+          "requiresUserInput": true,
+          "description": "load unit schedule"
+        },
+        "LoaderJSONPathFile": {
+          "type": "string"
+        },
+        "Destination": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "loaderConfig": {
+      "type": "object",
+      "properties": {
+        "CopyOptions": {
+          "type": "string"
+        },
+        "DataFormat": {
+          "enum": ["JSON", "CSV"]
+        },
+        "TruncateTargetTable": {
+          "type": "boolean"
+        },
+        "loadunits": {
+          "type": "object",
+          "patternProperties": {
+            "^.+$": {
+              "$ref": "#/definitions/loadunit"
+            }
+          }
+        },
+        "LoaderJSONPathFile": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "datasource": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "inputParams": {
+          "$ref": "#/definitions/inputParams"
+        },
+        "loaderConfig": {
+          "$ref": "#/definitions/loaderConfig"
+        },
+        "redshiftDDLs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": ["type", "id"],
+      "additionalProperties": false
+    }
+  },
+
+  "type": "object",
+
+  "properties": {
+    "datasource": {
+      "$ref": "#/definitions/datasource"
+    },
+    "sliceName": {
+      "type": "string"
+    },
+    "disableBootstrap": {
+      "type": "boolean"
+    },
+    "useLambdaMigration": {
+      "type": "boolean"
+    }
+  },
+  "required": ["datasource", "sliceName"],
+  "additionalProperties": false
+}
